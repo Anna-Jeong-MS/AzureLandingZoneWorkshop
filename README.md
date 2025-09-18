@@ -1,4 +1,4 @@
-# Azure Advanced Network Workshop
+# Azure Landing Zone Workshop
 
 ![Untitled](images/Untitled.png)
 
