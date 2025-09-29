@@ -11,7 +11,7 @@
     
     - 구독 : 할당 받은 구독 선택
     - 리소스 그룹 : 생성한 본인 리소스 그룹 선택
-    - 게이트웨이 이름 : `ApplicationGateway-<alias>`
+    - 게이트웨이 이름 : `ApplicationGateway`
     - 지역 : Korea Central
     - 계층 : WAF V2
     - 자동 크기 조정 : 예
@@ -22,7 +22,7 @@
     - WAF 정책 : `새로 만들기` 클릭
         - 이름 : `waf-default-policy`
         - `확인` 버튼 클릭
-    - 가상 네트워크 : `SecurityVNet-<alias>`
+    - 가상 네트워크 : `SecurityVNet`
     - 서브넷 : `AGWSubnet`
 3. `다음: 프런트 엔드 >` 버튼을 클릭합니다.
     
@@ -32,7 +32,7 @@
     
     - 프런트 엔드 IP 형식 : 공용
     - 공용 IPv4 주소 : `새로 추가` 클릭
-        - 이름 : `AGWPIP-<ALIAS>`
+        - 이름 : `AGWPIP`
         - `확인` 버튼 클릭
 
 1. `다음: 백 엔드 >` 버튼을 클릭합니다.
@@ -90,7 +90,7 @@
 ### AzureFirewallSubnet 서브넷 추가
 
 1. **가상 네트워크 화면**으로 이동합니다.
-2. 생성한 `SecurityVNet-<alias>` 을 선택합니다.
+2. 생성한 `SecurityVNet` 을 선택합니다.
 3. 왼쪽 메뉴에서 `설정 > 서브넷`을 클릭합니다.
 4. 왼쪽 상단의 `+ 서브넷` 버튼을 클릭합니다.
 5. 다음과 같이 구성하고 `추가` 버튼을 클릭합니다.
@@ -108,7 +108,7 @@
 3. 아래와 같이 구성합니다.
     - 구독 : 할당 받은 구독 선택
     - 리소스 그룹 : 생성한 본인 리소스 그룹 선택
-    - 이름 : `Firewall-<alias>`
+    - 이름 : `Firewall`
     - 지역 : Korea Central
     - 방화벽 SKU : 표준
     - 방화벽 관리 : 방화벽 정책을 사용하여 이 방화벽 관리
@@ -116,9 +116,9 @@
         - 정책 이름 : `default-fw-policy`
         - `확인` 버튼 클릭
     - 가상 네트워크 선택 : 기존 항목 사용
-    - 가상 네트워크 : `SecurityVNet-<alias>`
+    - 가상 네트워크 : `SecurityVNet`
     - 공용 IP 주소 : `새로 추가` 클릭
-        - 이름 : `FWPIP-<ALIAS>`
+        - 이름 : `FWPIP`
         - **확인** 버튼 클릭
     - `Enable Firewall Management NIC 체크박스 해제`
 4. `다음: 태그>` 버튼을 클릭합니다.
