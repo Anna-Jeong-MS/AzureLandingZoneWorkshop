@@ -48,7 +48,7 @@
 
 ### AppGW-to-Backend Rule
 
-![Untitled](Untitled.png)
+![Untitled](./images/Untitled.png)
 
 - 이름 : app-rules
 - 규칙 컬렉션 형식 : 네트워크
@@ -68,7 +68,7 @@
 
 ### Backend-to-AppGW Rule
 
-![Untitled](Untitled%201.png)
+![Untitled](./images/Untitled%201.png)
 
 - 이름 : appgw-rules
 - 규칙 컬렉션 형식 : 네트워크
@@ -91,7 +91,7 @@
 
 ### app-udr
 
-![Untitled](Untitled%202.png)
+![Untitled](./images/Untitled%202.png)
 
 1. `만들기` 버튼을 클릭합니다.
 2. 다음과 같이 구성 후 `검토 + 만들기`, `만들기` 버튼을 클릭합니다.
@@ -115,7 +115,7 @@
 
 ### appgw-udr
 
-![Untitled](Untitled%203.png)
+![Untitled](./images/Untitled%203.png)
 
 1. `만들기` 버튼을 클릭합니다.
 2. 다음과 같이 구성 후 `검토 + 만들기`, `만들기` 버튼을 클릭합니다.
