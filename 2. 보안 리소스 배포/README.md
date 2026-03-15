@@ -10,8 +10,8 @@
     ![image.png](./images/image.png)
     
     - 구독 : 할당 받은 구독 선택
-    - 리소스 그룹 : 생성한 본인 리소스 그룹 선택
-    - 게이트웨이 이름 : `ApplicationGateway`
+    - 리소스 그룹 : `landingzone-workshop-rg`
+    - 게이트웨이 이름 : `AppGateway`
     - 지역 : Korea Central
     - 계층 : WAF V2
     - 자동 크기 조정 : 예
@@ -22,7 +22,7 @@
     - WAF 정책 : `새로 만들기` 클릭
         - 이름 : `waf-default-policy`
         - `확인` 버튼 클릭
-    - 가상 네트워크 : `SecurityVNet`
+    - 가상 네트워크 : `HubVNet`
     - 서브넷 : `AGWSubnet`
 3. `다음: 프런트 엔드 >` 버튼을 클릭합니다.
     
@@ -81,8 +81,8 @@
 
 1. WAF(Web Application Firewall) 정책 메뉴로 이동합니다.
 2. 생성한 `waf-default-policy`를 클릭합니다.
-3. 왼쪽 메뉴에서 관리형 규칙을 선택합니다.
-4. 개요에서 `방지 모드로 전환`을 클릭합니다.
+3. 개요에서 `방지 모드로 전환`을 클릭합니다.
+4. 왼쪽 메뉴에서 설정 > 관리형 규칙을 선택합니다.
 5. 할당 버튼을 클릭하고 봇 관리 규칙 집합에서 `Microsoft_BotManagerRuleSet_1.0`을 선택하고 저장 버튼을 클릭합니다.
 
 ## 방화벽 배포
@@ -90,7 +90,7 @@
 ### AzureFirewallSubnet 서브넷 추가
 
 1. **가상 네트워크 화면**으로 이동합니다.
-2. 생성한 `SecurityVNet` 을 선택합니다.
+2. 생성한 `HubVNet` 을 선택합니다.
 3. 왼쪽 메뉴에서 `설정 > 서브넷`을 클릭합니다.
 4. 왼쪽 상단의 `+ 서브넷` 버튼을 클릭합니다.
 5. 다음과 같이 구성하고 `추가` 버튼을 클릭합니다.
@@ -99,7 +99,7 @@
     
     - 서브넷 용도 : Azure Firewall
     - 이름 : **AzureFirewallSubnet**
-    - 시작 주소 : `10.1.1.0`
+    - 시작 주소 : `10.0.1.0`
 
 ### 방화벽 배포
 
@@ -107,7 +107,7 @@
 2. 왼쪽 상단에 `만들기` 버튼을 클릭합니다.
 3. 아래와 같이 구성합니다.
     - 구독 : 할당 받은 구독 선택
-    - 리소스 그룹 : 생성한 본인 리소스 그룹 선택
+    - 리소스 그룹 : `landingzone-workshop-rg`
     - 이름 : `Firewall`
     - 지역 : Korea Central
     - 방화벽 SKU : 표준
@@ -116,10 +116,15 @@
         - 정책 이름 : `default-fw-policy`
         - `확인` 버튼 클릭
     - 가상 네트워크 선택 : 기존 항목 사용
-    - 가상 네트워크 : `SecurityVNet`
+    - 가상 네트워크 : `HubVNet`
     - 공용 IP 주소 : `새로 추가` 클릭
         - 이름 : `FWPIP`
         - **확인** 버튼 클릭
     - `Enable Firewall Management NIC 체크박스 해제`
 4. `다음: 태그>` 버튼을 클릭합니다.
 5. `다음: 검토 + 만들기 >` 버튼을 클릭하고 `만들기` 버튼을 클릭합니다.
+
+> **Firewall Management NIC**은 방화벽 관리 트래픽을 고객 데이터 트래픽과 분리하기 위한 전용 관리 인터페이스이며, Azure 플랫폼 전용 Public IP가 연결된 별도의 서브넷이 필요합니다.
+> 
+
+![image.png](./images/image%207.png)
