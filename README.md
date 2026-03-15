@@ -29,12 +29,12 @@
 
 이 워크숍에서는 다음과 같은 아키텍처를 구축합니다.
 
-Internet
-↓
-Application Gateway (WAF)
-↓
-Azure Firewall
-↓
+Internet  
+↓  
+Application Gateway (WAF)  
+↓  
+Azure Firewall  
+↓  
 Spoke VNet (Backend VM)
 
 | 구성 요소 | 역할 |
