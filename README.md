@@ -29,25 +29,21 @@
 
 이 워크숍에서는 다음과 같은 아키텍처를 구축합니다.
 
-Internet  
-↓  
-Application Gateway (WAF)  
-↓  
-Spoke VNet (Backend VM)  
-↓  
-Hub VNet  
-↓  
-Azure Firewall  
-↓  
-Internet  
+Internet
+↓
+Application Gateway (WAF)
+↓
+Azure Firewall
+↓
+Spoke VNet (Backend VM)
 
 | 구성 요소 | 역할 |
 |---|---|
-| Hub VNet | 중앙 보안 및 네트워크 제어 영역 |
+| Hub VNet | 중앙 보안 및 트래픽 제어 영역 |
 | Spoke VNet | 애플리케이션 워크로드 실행 영역 |
-| Azure Firewall | 중앙 Outbound 및 East-West 트래픽 검사 |
-| Application Gateway WAF | Inbound 웹 트래픽 보호 |
-| UDR | Spoke 트래픽을 Firewall로 강제 라우팅 |
+| Azure Firewall | Inbound, Outbound, East-West 트래픽 검사 및 제어 |
+| Application Gateway WAF | 외부 웹 요청에 대한 L7 진입점 및 WAF 보호 |
+| UDR | Spoke 트래픽을 Azure Firewall로 강제 라우팅 |
 
 ---
 
@@ -74,34 +70,6 @@ Internet
 | 6 | Backend VM 배포 |
 | 7 | User Defined Route 구성 |
 | 8 | 트래픽 흐름 검증 |
-
----
-
-## 🔀 Expected Traffic Flow
-
-### Inbound Traffic
-
-Internet  
-↓  
-Application Gateway (WAF)  
-↓  
-Backend VM (Spoke)
-
-### Outbound Traffic
-
-Spoke VM  
-↓  
-Azure Firewall (Hub)  
-↓  
-Internet  
-
-### East-West Traffic
-
-Spoke VNet  
-↓  
-Hub Firewall  
-↓  
-Other Spoke  
 
 ---
 
