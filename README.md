@@ -1,39 +1,147 @@
-# Azure Landing Zone Workshop
+# Azure Landing Zone Hands-on Workshop
 
-![Untitled](images/Untitled.png)
+![architecture](./images/Untitled.png)
 
-Azure 기반의 보안 중심 Landing Zone 구축 실습을 위한 워크숍 리포지토리입니다.  
-이 워크숍은 Virtual WAN 기반 네트워크, Azure Firewall, WAF, 보안 경로 제어, 라우팅 구성 등을 포함하여 기업 환경에 적합한 초기 Azure 인프라를 구성하는 데 중점을 둡니다.
+이 워크숍은 **Azure Landing Zone의 기본 네트워크 및 보안 아키텍처를 직접 구축해보는 Hands-on Lab**입니다.
 
----
+참가자는 **Hub-Spoke 네트워크 아키텍처**를 기반으로 Azure 환경을 구성하고,  
+**Azure Firewall, Application Gateway (WAF), User Defined Route**를 활용하여  
+기업 환경에서 사용되는 **중앙 집중형 보안 네트워크 구조**를 구현합니다.
 
-## 🎯 목표
-
-- 보안과 거버넌스를 고려한 Azure 인프라의 기본 구조 이해  
-- Virtual WAN 기반 네트워크 아키텍처 실습  
-- Azure Firewall, Application Gateway, WAF를 포함한 경로 제어 흐름 구성  
-- 실제 VM/Web App 등을 통해 트래픽이 흐르는 경로 검증  
+워크숍을 통해 Azure에서 **보안 경계, 트래픽 흐름, 네트워크 거버넌스**를 실제로 구성하고 검증할 수 있습니다.
 
 ---
 
-## 🛠 워크플로우 (실습 단계)
+## 🎯 Workshop Objectives
+
+이 워크숍을 완료하면 다음을 이해할 수 있습니다.
+
+- Azure Landing Zone의 기본 네트워크 구조
+- Hub-Spoke 네트워크 아키텍처
+- 중앙 보안 제어 (Azure Firewall)
+- Application Gateway WAF 기반 Inbound 보호
+- User Defined Route를 통한 트래픽 제어
+- Azure 네트워크에서의 트래픽 흐름 검증 방법
+
+---
+
+## 🏗 Architecture Overview
+
+이 워크숍에서는 다음과 같은 아키텍처를 구축합니다.
+
+Internet  
+↓  
+Application Gateway (WAF)  
+↓  
+Spoke VNet (Backend VM)  
+↓  
+Hub VNet  
+↓  
+Azure Firewall  
+↓  
+Internet  
+
+| 구성 요소 | 역할 |
+|---|---|
+| Hub VNet | 중앙 보안 및 네트워크 제어 영역 |
+| Spoke VNet | 애플리케이션 워크로드 실행 영역 |
+| Azure Firewall | 중앙 Outbound 및 East-West 트래픽 검사 |
+| Application Gateway WAF | Inbound 웹 트래픽 보호 |
+| UDR | Spoke 트래픽을 Firewall로 강제 라우팅 |
+
+---
+
+## 📋 Prerequisites
+
+워크숍 시작 전에 다음이 필요합니다.
+
+- Azure Subscription
+- Contributor 이상의 권한
+- Azure CLI 또는 Azure Portal 접근
+- 기본적인 Azure Networking 이해
+
+---
+
+## 🛠 Workshop Workflow
 
 | 단계 | 설명 |
 |------|------|
-| 1 | network 폴더에서 허브와 스포크 VNet, Virtual WAN 허브 배포 |
-| 2 | security 폴더에서 Azure Firewall, WAF, NSG 배포 및 기본 설정 |
-| 3 | connectivity 폴더에서 허브-스포크 연결, 라우팅 경로 구성 |
-| 4 | workloads 폴더에서 VM/Web App 배포 |
-| 5 | 트래픽 흐름 테스트 및 검증 (방화벽 통과, AppGW – Backend 통신 등) |
+| 1 | Resource Group 생성 |
+| 2 | Hub VNet 및 Spoke VNet 생성 |
+| 3 | Hub-Spoke VNet Peering 구성 |
+| 4 | Azure Firewall 배포 |
+| 5 | Application Gateway (WAF) 배포 |
+| 6 | Backend VM 배포 |
+| 7 | User Defined Route 구성 |
+| 8 | 트래픽 흐름 검증 |
 
 ---
 
-## 🔄 최신 변경 및 반영 포인트 (워크숍 기준)
+## 🔀 Expected Traffic Flow
 
-- Virtual WAN 허브 라우팅 테이블을 활용한 경로 제어 (UDR 대신 Hub 라우팅 중심)  
+### Inbound Traffic
+
+Internet  
+↓  
+Application Gateway (WAF)  
+↓  
+Backend VM (Spoke)
+
+### Outbound Traffic
+
+Spoke VM  
+↓  
+Azure Firewall (Hub)  
+↓  
+Internet  
+
+### East-West Traffic
+
+Spoke VNet  
+↓  
+Hub Firewall  
+↓  
+Other Spoke  
 
 ---
 
-## 📜 라이선스
+## 🔎 Validation Steps
 
-이 워크숍 리포지토리는 **MIT 라이선스** 하에 배포됩니다. 자유롭게 수정, 배포 가능하며, 출처 표기를 부탁드립니다.  
+워크숍이 완료되면 다음을 확인합니다.
+
+- Application Gateway를 통한 Web 접근 가능 여부
+- Azure Firewall을 통한 Outbound 트래픽 검사
+- UDR 적용 여부
+- 트래픽이 Hub Firewall을 통과하는지 확인
+
+---
+
+## 🧹 Cleanup
+
+워크숍 종료 후 리소스를 삭제하여 비용 발생을 방지합니다.
+
+az group delete --name <resource-group-name>
+
+또는 Azure Portal에서 Resource Group을 삭제합니다.
+
+---
+
+## 📚 References
+
+Azure Landing Zone Architecture  
+https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/
+
+Azure Hub-Spoke Architecture  
+https://learn.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/hub-spoke
+
+Azure Firewall  
+https://learn.microsoft.com/azure/firewall/
+
+Application Gateway WAF  
+https://learn.microsoft.com/azure/application-gateway/
+
+---
+
+## 📜 License
+
+이 워크숍 리포지토리는 MIT License 하에 배포됩니다.
