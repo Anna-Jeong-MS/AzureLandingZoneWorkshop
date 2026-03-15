@@ -67,6 +67,6 @@
     - 'HubVNet'에서 'SpokeVNet'에 액세스 허용 체크
     - 'HubVNet'에서 'SpokeVNet'이(가) 전달한 트래픽 수신 허용 체크
 
-5. 구성 완료 후 `추가` 버튼을 클릭합니다.
+4. 구성 완료 후 `추가` 버튼을 클릭합니다.
 
     ![image.png](./images/image%203.png)
