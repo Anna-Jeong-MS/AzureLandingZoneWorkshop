@@ -41,9 +41,9 @@
 > Azure의 기본 아웃바운드 연결이 2026년 3월 31일 이후로 종료됩니다.
 > 
 
-![image.png](image.png)
+![image.png](./images/image.png)
 
-![image.png](image%201.png)
+![image.png](./images/image%201.png)
 
 ### 가상 네트워트 피어링
 
@@ -51,7 +51,7 @@
 2. 왼쪽 메뉴에서 `설정 > 피어링` 메뉴를 선택합니다.
 3. 상단 `추가` 버튼을 클릭해 네트워크 피어링 구성을 시작합니다.
     
-    ![image.png](image%202.png)
+    ![image.png](./images/image%202.png)
     
     **원격 가상 네트워크 요약**
     
@@ -69,4 +69,4 @@
 
 5. 구성 완료 후 `추가` 버튼을 클릭합니다.
 
-    ![image.png](image%203.png)
+    ![image.png](./images/image%203.png)
